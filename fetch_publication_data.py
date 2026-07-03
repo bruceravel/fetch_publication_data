@@ -4,35 +4,195 @@ from openpyxl import Workbook
 from openpyxl.styles import Font
 
 beamlines = {
-    '2-ID':    ['Soft Inelastic X-ray Scattering','SIX', 'Soft X-ray Scattering & Spectroscopy'],
-    '3-ID':    ['Hard X-ray Nanoprobe','HXN', 'Imaging'],
-    '4-BM':    ['X-ray Fluorescence Microscopy','XFM', 'Imaging'],
-    '4-ID':    ['Integrated In situ and Resonant Hard X-ray Studies','ISR', 'Complex Scattering'],
-    '5-ID':    ['Submicron Resolution X-ray Spectroscopy','SRX', 'Imaging'],
-    '6-BM':    ['Beamline for Materials Measurement','BMM', 'Hard X-ray Scattering & Spectroscopy'],
-    '7-BM':    ['Quick x-ray Absorption and Scattering','QAS', 'Hard X-ray Scattering & Spectroscopy'],
-    '7-ID-1':  ['Spectroscopy Soft and Tender','SST1', 'Soft X-ray Scattering & Spectroscopy'],
-    '7-ID-2':  ['Spectroscopy Soft and Tender 2','SST2', 'Soft X-ray Scattering & Spectroscopy'],
-    '8-BM':    ['Tender Energy X-ray Absorption Spectroscopy','TES', 'Imaging'],
-    '8-ID':    ['Inner-Shell Spectroscopy','ISS', 'Hard X-ray Scattering & Spectroscopy'],
-    '10-ID':   ['Inelastic X-ray Scattering','IXS', 'Complex Scattering'],
-    '11-BM':   ['Complex Materials Scattering','CMS', 'Complex Scattering'],
-    '11-ID':   ['Coherent Hard X-ray Scattering','CHX', 'Complex Scattering'],
-    '12-ID':   ['Soft Matter Interfaces','SMI', 'Complex Scattering'],
-    '16-ID':   ['Life Science X-ray Scattering','LiX', 'Structural Biology'],
-    '17-BM':   ['X-ray Footprinting of Biological Materials','XFP', 'Structural Biology'],
-    '17-ID-1': ['Highly Automated Macromolecular Crystallography','AMX', 'Structural Biology'],
-    '17-ID-2': ['Frontier Microfocusing Macromolecular Crystallography','FMX', 'Structural Biology'],
-    '18-ID':   ['Full Field X-ray Imaging','FXI', 'Imaging'],
-    '19-ID':   ['Biological Microdiffraction Facility','NYX', 'Structural Biology'],
-    '21-ID':   ['Electron Spectro-Microscopy','ESM', 'Soft X-ray Scattering & Spectroscopy'],
-    '22-IR-1': ['Frontier Synchrotron Infrared Spectroscopy','FIS', 'Soft X-ray Scattering & Spectroscopy'],
-    '22-IR-2': ['Magnetospectroscopy, Ellipsometry and Time-Resolved Optical Spectroscopie','MET', 'Soft X-ray Scattering & Spectroscopy'],
-    '23-ID-1': ['Coherent Soft X-ray Scattering beamline','CSX', 'Soft X-ray Scattering & Spectroscopy'],
-    '23-ID-2': ['In situ and Operando Soft X-ray Spectroscopy','IOS', 'Soft X-ray Scattering & Spectroscopy'],
-    '27-ID':   ['High Energy Engineering X-ray Scattering','HEX', 'Hard X-ray Scattering & Spectroscopy'],
-    '28-ID-1': ['Pair Distribution Function','PDF', 'Hard X-ray Scattering & Spectroscopy'],
-    '28-ID-2': ['X-ray Powder Diffraction','XPD', 'Hard X-ray Scattering & Spectroscopy'],
+    '2-ID':    {'fullname': 'Soft Inelastic X-ray Scattering',
+                'tla':      'SIX',
+                'program':  'Electronic Structure Techniques',
+                'status':   'operating'},
+    
+    '3-ID':    {'fullname': 'Hard X-ray Nanoprobe',
+                'tla':      'HXN',
+                'program':  'Imaging and Microscopy',
+                'status':   'operating'},
+    
+    '4-BM':    {'fullname': 'X-ray Fluorescence Microscopy',
+                'tla':      'XFM',
+                'program':  'BioImaging',
+                'status':   'operating'},
+    
+    '4-ID':    {'fullname': 'Integrated In situ and Resonant Hard X-ray Studies',
+                'tla':      'ISR',
+                'program':  'Complex Scattering',
+                'status':   'operating'},
+    
+    '5-ID':    {'fullname': 'Submicron Resolution X-ray Spectroscopy',
+                'tla':      'SRX',
+                'program':  'Imaging and Microscopy',
+                'status':   'operating'},
+    
+    '6-BM':    {'fullname': 'Beamline for Materials Measurement',
+                'tla':      'BMM',
+                'program':  'Spectroscopy',
+                'status':   'operating'},
+    
+    '6-ID':    {'fullname': 'High Resolution Powder Diffraction',
+                'tla':      'HRD',
+                'program':  'Hard X-ray Methods',
+                'status':   'development'},
+    
+    '7-BM':    {'fullname': 'Quick x-ray Absorption and Scattering',
+                'tla':      'QAS',
+                'program':  'Spectroscopy',
+                'status':   'operating'},
+    
+    '7-ID-1':  {'fullname': 'Spectroscopy Soft and Tender',
+                'tla':      'SST1',
+                'program':  'Spectroscopy',
+                'status':   'operating'},
+    
+    '7-ID-2':  {'fullname': 'Spectroscopy Soft and Tender 2',
+                'tla':      'SST2',
+                'program':  'Spectroscopy',
+                'status':   'operating'},
+    
+    '8-BM':    {'fullname': 'Tender Energy X-ray Absorption Spectroscopy',
+                'tla':      'TES',
+                'program':  'Spectroscopy',
+                'status':   'operating'},
+    
+    '8-ID':    {'fullname': 'Inner-Shell Spectroscopy',
+                'tla':      'ISS',
+                'program':  'Spectroscopy',
+                'status':   'operating'},
+    
+    '9-ID':    {'fullname': 'Coherent Diffraction Imaging',
+                'tla':      'CDI',
+                'program':  'Imaging and Microscopy',
+                'status':   'development'},
+    
+    '10-ID':   {'fullname': 'Inelastic X-ray Scattering',
+                'tla':      'IXS',
+                'program':  'Complex Scattering',
+                'status':   'operating'},
+    
+    '11-BM':   {'fullname': 'Complex Materials Scattering',
+                'tla':      'CMS',
+                'program':  'Complex Scattering',
+                'status':   'operating'},
+    
+    '11-ID':   {'fullname': 'Coherent Hard X-ray Scattering',
+                'tla':      'CHX',
+                'program':  'Complex Scattering',
+                'status':   'operating'},
+    
+    '12-ID':   {'fullname': 'Soft Matter Interfaces',
+                'tla':      'SMI',
+                'program':  'Complex Scattering',
+                'status':   'operating'},
+    
+    '13-ID':   {'fullname': 'Advanced Materials Processing',
+                'tla':      'AMP',
+                'program':  'Complex Scattering',
+                'status':   'development'},
+    
+    '16-BM':   {'fullname': 'Quantitive Cellular Tomography',
+                'tla':      'QCT',
+                'program':  'Studies Biology',
+                'status':   'development'},
+    
+    '16-ID':   {'fullname': 'Life Science X-ray Scattering',
+                'tla':      'LiX',
+                'program':  'Structural Biology',
+                'status':   'operating'},
+    
+    '17-BM':   {'fullname': 'X-ray Footprinting of Biological Materials',
+                'tla':      'XFP',
+                'program':  'Structural Biology',
+                'status':   'operating'},
+    
+    '17-ID-1': {'fullname': 'Highly Automated Macromolecular Crystallography',
+                'tla':      'AMX',
+                'program':  'Structural Biology',
+                'status':   'operating'},
+    
+    '17-ID-2': {'fullname': 'Frontier Microfocusing Macromolecular Crystallography',
+                'tla':      'FMX',
+                'program':  'Structural Biology',
+                'status':   'operating'},
+    
+    '18-ID':   {'fullname': 'Full Field X-ray Imaging',
+                'tla':      'FXI',
+                'program':  'Imaging and Microscopy',
+                'status':   'operating'},
+    
+    '19-ID':   {'fullname': 'Biological Microdiffraction Facility',
+                'tla':       'NYX',
+                'program':  'Structural Biology',
+                'status':   'operating'},
+    
+    '21-ID':   {'fullname': 'Electron Spectro-Microscopy',
+                'tla':      'ESM',
+                'program':  'Electronic Structure Techniques',
+                'status':   'operating'},
+    
+    '22-IR-1': {'fullname': 'Frontier Synchrotron Infrared Spectroscopy',
+                'tla':      'FIS',
+                'program':  'Electronic Structure Techniques',
+                'status':   'operating'},
+    
+    '22-IR-2': {'fullname': 'Magnetospectroscopy, Ellipsometry and Time-Resolved Optical Spectroscopie',
+                'tla':      'MET',
+                'program':  'Electronic Structure Techniques',
+                'status':   'operating'},
+    
+    '23-ID-1': {'fullname': 'Coherent Soft X-ray Scattering beamline',
+                'tla':      'CSX',
+                'program':  'Electronic Structure Techniques',
+                'status':   'operating'},
+    
+    '23-ID-2': {'fullname': 'In situ and Operando Soft X-ray Spectroscopy',
+                'tla':      'IOS',
+                'program':  'Spectroscopy',
+                'status':   'operating'},
+    
+    '24-IR':   {'fullname': 'IR Nanospctroscopy Microspectroscopy',
+                'tla':      'INF',
+                'program':  'Electronic Structure Techniques',
+                'status':   'development'},
+    
+    '26-ID-1': {'fullname': 'Advanced Nanoscale Imaging',
+                'tla':      'ANI',
+                'program':  'Imaging and Microscopy',
+                'status':   'development'},
+    
+    '26-ID-1': {'fullname': 'Tender X-ray Nanoprobe',
+                'tla':      'TXN',
+                'program':  'Imaging and Microscopy',
+                'status':   'development'},
+    
+    '27-ID':   {'fullname': 'High Energy Engineering X-ray Scattering',
+                'tla':      'HEX',
+                'program':  'Hard X-ray Methods',
+                'status':   'operating'},
+    
+    '28-ID-1': {'fullname': 'Pair Distribution Function',
+                'tla':      'PDF',
+                'program':  'Hard X-ray Methods',
+                'status':   'operating'},
+    
+    '28-ID-2': {'fullname': 'X-ray Powder Diffraction',
+                'tla':      'XPD',
+                'program':  'Hard X-ray Methods',
+                'status':   'operating'},
+    
+    '29-ID-1': {'fullname': 'Soft X-ray Nanoprobe',
+                'tla':      'SXN',
+                'program':  'Imaging and Microscopy',
+                'status':   'development'},
+    
+    '29-ID-2': {'fullname': 'Soft X-ray Photoemission and Scattering Imagine',
+                'tla':      'ARI',
+                'program':  'Electronic Structure Techniques',
+                'status':   'development'},
 }
 
 wb = Workbook()
@@ -44,9 +204,13 @@ ws.freeze_panes = c
 for cell in range(20):
     ws[f'{chr(65+cell)}1'].font = Font(bold=True)
 
-for i, port in enumerate(beamlines.keys()):
-    tla = beamlines[port][1]
-    program = beamlines[port][2]
+i = -1
+for j, port in enumerate(beamlines.keys()):
+    if beamlines[port]['status'] == 'development':
+        continue
+    i = i+1
+    tla = beamlines[port]['tla']
+    program = beamlines[port]['program']
     print(tla)
     url = f'https://www.bnl.gov/nsls2/beamlines/publications.php?q={port}'
     html = requests.get(url).content
@@ -55,7 +219,7 @@ for i, port in enumerate(beamlines.keys()):
     answer = str(df).split('\n')[-1].split()
     years = len(str(df).split('\n')) - 2
 
-    matches=re.findall('Cited (\d+) times', str(html))
+    matches=re.findall('Cited (\\d+) times', str(html))
     total_citations = sum((int(x) for x in matches))
 
     ws.append([port, tla, program, int(answer[3]), int(answer[2]), years,
